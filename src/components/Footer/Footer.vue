@@ -1,15 +1,17 @@
 <template>
-  <footer class="footer bg-info">
+  <div>
+    <footer class="footer bg-info">
       <div class="container">
         <span class="text-white">Project for Master course VUEjs</span>
       </div>
-  </footer>
+    </footer>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'Footer'
-  };
+export default {
+  name: 'Footer'
+}
 </script>
 <style>
   .footer {

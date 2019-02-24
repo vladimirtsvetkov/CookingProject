@@ -8,52 +8,37 @@
         </b-input-group>
 
         <div class="row">
-            <div v-for="meal in meals"> 
-                <div>
-                    <b-card :title=meal.strMeal
-                            :img-src=meal.strMealThumb
-                            :id=meal.idMeal
-                            img-alt="Image"
-                            img-top
-                            style="max-width: 20rem;"
-                            class="mb-2">
-                        <p class="card-text" >
-                        Category: {{meal.strCategory}}
-                        </br>
-                        Area: {{meal.strArea}}
-                        </p>
-                        <b-button @click="viewMealDetails(meal.idMeal)" variant="success">Show details</b-button>
-                        <b-button @click="viewMealDetails(meal.idMeal)" variant="warning">Add to favorite</b-button>
-                    </b-card>
-                </div>
-            </div>
+          <mealList :meals="meals"></mealList>
         </div>
 </div>
 </template>
 
 <script>
+import MealList from '../common/MealList'
+
 export default {
-    name: 'Search',
-    methods: {
-        search(){
-            this.$http.get('search.php?s=' + this.$data.input)
-                    .then(response => {
-                        this.$data.meals = response.body.meals;
-                        console.log(response.body.meal.idMeal);
-                });
-        },
-        viewMealDetails(id){
-          this.$router.push({ path: `/mealdetails/${id}`});
-        }
+  name: 'Search',
+  components: {
+    mealList: MealList
+  },
+   data () {
+      return {
+        input: ''
+      }
     },
-    data() {
-        return {
-            input: '',
-            meals: []
-        }
+  methods: {
+    search () {
+      this.$store.dispatch('findMeals', this.$data.input)
+    }
+  },
+  computed: {
+      meals () {
+        return this.$store.getters.meals
+      }
     }
 }
 </script>
+
 <style>
 .search{
     margin: 100px;

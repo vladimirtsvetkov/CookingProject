@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import Search from '@/components/Search/Search'
 import MealDetails from '@/components/mealdetails/MealDetails'
 import BootstrapVue from 'bootstrap-vue'
-import Footer from '@/components/Footer/Footer'
+import Fav from '@/components/Fav/Fav'
+import Latest from '@/components/Latest/Latest'
 Vue.use(BootstrapVue)
 
 Vue.use(Router)
@@ -13,14 +14,22 @@ export default new Router({
     {
       path: '/',
       name: 'HelloWorld',
-      component: Search,
-      footer: Footer,
+      component: Search
     },
     {
-      path:'/mealdetails/:id',
+      path: '/mealdetails/:id',
       name: 'MealDetails',
-      component: MealDetails,
-      footer: Footer,
+      component: MealDetails
     },
-  ],
+    {
+      path: '/fav',
+      name: 'Fav',
+      component: Fav
+    },
+    {
+      path: '/latest',
+      name: 'Latest',
+      component: Latest
+    }
+  ]
 })
