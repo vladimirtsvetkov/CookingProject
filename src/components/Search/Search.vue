@@ -54,8 +54,6 @@ export default {
     }
 }
 </script>
-
-
 <style>
 .search{
     margin: 100px;
